@@ -15,5 +15,7 @@ SET bike:1 "Process 134"
 GET bike:1
 ```
 ### Hash Example (Like Table Row)
+```
 HSET user:1 name "Pritesh" age 35 city "Mumbai"
 HGETALL user:1
+```
