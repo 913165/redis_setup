@@ -19,3 +19,7 @@ GET bike:1
 HSET user:1 name "Pritesh" age 35 city "Mumbai"
 HGETALL user:1
 ```
+## json data url for vector database
+```
+https://raw.githubusercontent.com/bsbodden/redis_vss_getting_started/main/data/bikes.json
+```
