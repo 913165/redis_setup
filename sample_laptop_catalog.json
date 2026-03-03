@@ -1,0 +1,122 @@
+[
+  {
+    "model": "ZenPro 14",
+    "brand": "TechNova",
+    "price": 1100,
+    "type": "Ultrabook",
+    "specs": {
+      "processor": "Intel i7",
+      "ram": "16GB",
+      "weight": "1.2"
+    },
+    "description": "The ZenPro 14 is a lightweight ultrabook designed for frequent travelers. Featuring a 14-inch OLED display and long battery life, it handles daily workloads with ease."
+  },
+  {
+    "model": "GameX 17",
+    "brand": "Firebyte",
+    "price": 2100,
+    "type": "Gaming Laptop",
+    "specs": {
+      "processor": "AMD Ryzen 9",
+      "ram": "32GB",
+      "weight": "2.8"
+    },
+    "description": "Built for hardcore gamers, GameX 17 comes with top-tier graphics and advanced cooling. Excellent for AAA titles at high refresh rates."
+  },
+  {
+    "model": "EduBook Air",
+    "brand": "Learnix",
+    "price": 650,
+    "type": "Student Laptop",
+    "specs": {
+      "processor": "Intel i5",
+      "ram": "8GB",
+      "weight": "1.4"
+    },
+    "description": "Affordable and durable, EduBook Air is perfect for students and remote learning with reliable performance and solid battery life."
+  },
+  {
+    "model": "Creator Studio 15",
+    "brand": "PixelForge",
+    "price": 1800,
+    "type": "Creator Laptop",
+    "specs": {
+      "processor": "Intel i9",
+      "ram": "32GB",
+      "weight": "2.1"
+    },
+    "description": "Optimized for creators, the Creator Studio 15 delivers powerful graphics performance and a color-accurate 4K panel — great for video editing and design."
+  },
+  {
+    "model": "EcoLite X",
+    "brand": "GreenTech",
+    "price": 900,
+    "type": "Business Laptop",
+    "specs": {
+      "processor": "Intel i7",
+      "ram": "16GB",
+      "weight": "1.3"
+    },
+    "description": "EcoLite X offers secure login options and enterprise-grade management features in a lightweight design."
+  },
+  {
+    "model": "TravelMate Go",
+    "brand": "Skyware",
+    "price": 750,
+    "type": "Compact Laptop",
+    "specs": {
+      "processor": "AMD Ryzen 5",
+      "ram": "8GB",
+      "weight": "1.1"
+    },
+    "description": "Ultra-compact and ready for life on the road, TravelMate Go handles remote work and daily multitasking."
+  },
+  {
+    "model": "StudioDeck 16",
+    "brand": "Artline",
+    "price": 1999,
+    "type": "Creator Laptop",
+    "specs": {
+      "processor": "AMD Ryzen 7",
+      "ram": "32GB",
+      "weight": "2.5"
+    },
+    "description": "StudioDeck 16 brings professional-grade performance with a spacious 16-inch display — ideal for animation and 3D modeling."
+  },
+  {
+    "model": "WorkForce Pro",
+    "brand": "BizTech",
+    "price": 1400,
+    "type": "Business Laptop",
+    "specs": {
+      "processor": "Intel i7",
+      "ram": "16GB",
+      "weight": "1.5"
+    },
+    "description": "WorkForce Pro balances performance and portability with robust security options for corporate environments."
+  },
+  {
+    "model": "PocketBook 12",
+    "brand": "SwiftTech",
+    "price": 500,
+    "type": "Budget Laptop",
+    "specs": {
+      "processor": "Intel Celeron",
+      "ram": "4GB",
+      "weight": "1.2"
+    },
+    "description": "An entry-level laptop ideal for web browsing, document editing, and basic tasks at a great price."
+  },
+  {
+    "model": "PixelPro 15",
+    "brand": "NovaSight",
+    "price": 1650,
+    "type": "Multimedia Laptop",
+    "specs": {
+      "processor": "Intel i7",
+      "ram": "16GB",
+      "weight": "1.8"
+    },
+    "description": "PixelPro 15 features a bright display and powerful audio system for movies, music, and streaming entertainment."
+  }
+]
