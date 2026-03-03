@@ -15,7 +15,9 @@ Students will clearly see how vector similarity works.
 There can be other datasets like below
 
 Real estate dataset
+```
 📚 Book store dataset
 🍽 Restaurant dataset
 🚗 Cars dataset
 🏥 Healthcare dataset
+```
