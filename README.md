@@ -2,7 +2,7 @@
 
 ## Semantic search examples
 
-Query:
+Queries:
 
 ```
 "best laptop for gaming"
@@ -10,3 +10,4 @@ Query:
 "budget laptop for students"
 "professional laptop for video editing"
 ```
+Students will clearly see how vector similarity works.
