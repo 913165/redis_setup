@@ -41,7 +41,7 @@ sample member of dataset is as below
 ```
 
 schema for above json is as below
-```json
+```python
 schema = (
     # Basic Fields
     TextField("$.model", no_stem=True, as_name="model"),
