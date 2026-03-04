@@ -4,6 +4,16 @@
 docker run -d --name redis -p 6379:6379 redis
 ```
 
+### docker command to run redis server with password
+```
+ docker run -d \
+  --name redis \
+  -p 6379:6379 \
+  -e REDIS_ARGS="--requirepass secret" \
+  redis
+
+```
+
 ### Connect with redis-cli 
 ```
 docker exec -it redis redis-cli
