@@ -4,10 +4,16 @@ FT.CREATE documents ON HASH PREFIX 1 docs: SCHEMA doc_embedding VECTOR SVS-VAMAN
 ```
 
 # List all indices
+```
 FT._LIST
+```
 
 # View index info
+```
 FT.INFO documents
+```
 
 # Drop and recreate
+```
 FT.DROPINDEX documents
+```
