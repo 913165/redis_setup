@@ -95,7 +95,7 @@ EOF
 redis-server redis-master/redis.conf &
 redis-server redis-replica1/redis.conf &
 redis-server redis-replica2/redis.conf &
-````
+```
 
 Verify
 
