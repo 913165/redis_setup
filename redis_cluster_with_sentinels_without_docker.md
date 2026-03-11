@@ -87,8 +87,7 @@ replicaof 127.0.0.1 6379
 appendonly yes
 protected-mode no
 EOF
-
----
+```
 
 # 6. Start Redis servers
 
