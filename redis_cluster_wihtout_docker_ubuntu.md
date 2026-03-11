@@ -10,6 +10,11 @@ appendonly yes
 EOF
 ```
 
+# give permission
+```
+chmod -R 777 *
+```
+
 # Redis Cluster Setup (Ports 7000–7008)
 
 This guide contains all commands used to successfully create and verify a Redis Cluster locally.
