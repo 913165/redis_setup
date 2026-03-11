@@ -1,3 +1,15 @@
+# create redis.conf into current directory
+
+```bash
+cat <<EOF > redis.conf
+port 7000
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+appendonly yes
+EOF
+```
+
 # Redis Cluster Setup (Ports 7000–7008)
 
 This guide contains all commands used to successfully create and verify a Redis Cluster locally.
