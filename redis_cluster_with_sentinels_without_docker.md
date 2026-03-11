@@ -80,7 +80,7 @@ EOF
 
 # 5. Create Replica 2 configuration
 
-````bash
+```bash
 cat <<EOF > redis-replica2/redis.conf
 port 6381
 replicaof 127.0.0.1 6379
