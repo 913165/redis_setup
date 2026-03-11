@@ -24,7 +24,7 @@ This README contains the full set of commands to install Redis, configure a mast
 
 ---
 
-# Architecture
+# 1. Architecture
 
 Master      : 6379
 Replica 1   : 6380
@@ -33,17 +33,8 @@ Replica 2   : 6381
 Sentinel 1  : 26379
 Sentinel 2  : 26380
 Sentinel 3  : 26381
-
 ---
 
-# 1. Install Redis
-
-```bash
-sudo apt update
-sudo apt install redis-server -y
-```
-
-Check version
 
 ```bash
 redis-server --version
