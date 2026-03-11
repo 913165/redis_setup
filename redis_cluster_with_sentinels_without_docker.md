@@ -16,6 +16,11 @@ sudo systemctl enable redis-server
 sudo systemctl start redis-server
 ```
 
+
+```bash
+redis-server --version
+```
+
 ---
 
 # Redis Sentinel Setup (Fresh Ubuntu VM)
@@ -36,9 +41,6 @@ Sentinel 3  : 26381
 ```
 
 
-```bash
-redis-server --version
-```
 
 ---
 
