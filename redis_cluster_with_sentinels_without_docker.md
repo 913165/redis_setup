@@ -1,4 +1,4 @@
-# Redis Install on Ubuntu/Debian
+# 1.Redis Install on Ubuntu/Debian
 
 ```bash
 sudo apt-get install lsb-release curl gpg
@@ -24,8 +24,8 @@ This README contains the full set of commands to install Redis, configure a mast
 
 ---
 
-# 1. Architecture
-
+#  Architecture
+```
 Master      : 6379
 Replica 1   : 6380
 Replica 2   : 6381
@@ -33,7 +33,7 @@ Replica 2   : 6381
 Sentinel 1  : 26379
 Sentinel 2  : 26380
 Sentinel 3  : 26381
----
+```
 
 
 ```bash
