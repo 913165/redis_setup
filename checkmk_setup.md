@@ -3,7 +3,9 @@
 https://checkmk.com/download
 
 select linux and select row
+```
 https://checkmk.com/download?platform=cmk&distribution=ubuntu&release=noble&edition=community&version=2.4.0p23
+```
 
 # 1. Download Checkmk for Ubuntu or Debian
 
