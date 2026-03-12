@@ -14,6 +14,8 @@ sudo apt-get install redis -y
 ```bash
 sudo systemctl enable redis-server
 sudo systemctl start redis-server
+sudo systemctl stop redis-server
+sudo systemctl disable redis-server
 ```
 
 
