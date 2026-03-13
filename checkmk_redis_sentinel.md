@@ -87,34 +87,16 @@ sudo mkdir -p /etc/check_mk
 
 # Write the config file with your cluster nodes
 sudo tee /etc/check_mk/mk_redis.cfg << 'EOF'
-REDIS_INSTANCES=(node7000 node7001 node7002 node7003 node7004 node7005 node7006 node7007 node7008)
+REDIS_INSTANCES=(master replica1 replica2)
 
-REDIS_HOST_node7000="127.0.0.1"
-REDIS_PORT_node7000="7000"
+REDIS_HOST_master="127.0.0.1"
+REDIS_PORT_master="6379"
 
-REDIS_HOST_node7001="127.0.0.1"
-REDIS_PORT_node7001="7001"
+REDIS_HOST_replica1="127.0.0.1"
+REDIS_PORT_replica1="6380"
 
-REDIS_HOST_node7002="127.0.0.1"
-REDIS_PORT_node7002="7002"
-
-REDIS_HOST_node7003="127.0.0.1"
-REDIS_PORT_node7003="7003"
-
-REDIS_HOST_node7004="127.0.0.1"
-REDIS_PORT_node7004="7004"
-
-REDIS_HOST_node7005="127.0.0.1"
-REDIS_PORT_node7005="7005"
-
-REDIS_HOST_node7006="127.0.0.1"
-REDIS_PORT_node7006="7006"
-
-REDIS_HOST_node7007="127.0.0.1"
-REDIS_PORT_node7007="7007"
-
-REDIS_HOST_node7008="127.0.0.1"
-REDIS_PORT_node7008="7008"
+REDIS_HOST_replica2="127.0.0.1"
+REDIS_PORT_replica2="6381"
 EOF
 ```
 
