@@ -1,3 +1,4 @@
+# check ubuntu version before donwloading and installing checkmk
 # install checkmk on ubuntu
 
 https://checkmk.com/download
