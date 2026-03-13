@@ -42,7 +42,7 @@ The CheckMK agent collects data from your machine and sends it to the CheckMK se
 
 ```bash
 # The .deb package is already bundled with CheckMK
-sudo dpkg -i /opt/omd/versions/2.4.0p23.cre/share/check_mk/agents/check-mk-agent-2.4.0p23-1_all.deb
+sudo dpkg -i /opt/omd/versions/2.4.0p23.cre/share/check_mk/agents/check-mk-agent*.deb
 
 # Enable and start the agent socket
 sudo systemctl enable check-mk-agent.socket
