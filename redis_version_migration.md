@@ -1,4 +1,4 @@
-# redis 7 instllation
+# redis 7 instllation and migrate to latest for single server
 
 ```
 sudo apt-get install lsb-release curl gpg
@@ -8,3 +8,5 @@ echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://pack
 sudo apt-get update
 apt-cache policy redis
 sudo apt install redis=6:7.4.8-1rl1~jammy1 redis-server=6:7.4.8-1rl1~jammy1 redis-tools=6:7.4.8-1rl1~jammy1
+
+sudo apt install redis redis-server redis-tools
