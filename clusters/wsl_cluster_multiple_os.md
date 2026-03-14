@@ -5,6 +5,7 @@ This guide shows how to create a **Redis Cluster** using three Ubuntu WSL instan
 
 Cluster layout:
 
+```
 Node1 (WSL1)
  ├─ Redis 7000
  └─ Redis 7001
@@ -16,6 +17,7 @@ Node2 (WSL2)
 Node3 (WSL3)
  ├─ Redis 7004
  └─ Redis 7005
+```
 
 Total nodes: **6 (3 masters + 3 replicas)**
 
