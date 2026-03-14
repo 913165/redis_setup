@@ -1,112 +1,190 @@
 
-# Redis Cluster Reset / Delete Guide
+# Redis Cluster Setup on 3 WSL Nodes (6 Redis Instances)
 
-This guide explains how to remove or reset a Redis Cluster **without shutting down the Redis nodes**.
+This guide shows how to create a **Redis Cluster** using three Ubuntu WSL instances.
 
-It works for clusters created using **Redis Cluster mode**.
+Cluster layout:
 
----
+Node1 (WSL1)
+ ├─ Redis 7000
+ └─ Redis 7001
 
-# 1. Verify Current Cluster Status
+Node2 (WSL2)
+ ├─ Redis 7002
+ └─ Redis 7003
 
-Run on any node:
+Node3 (WSL3)
+ ├─ Redis 7004
+ └─ Redis 7005
 
-```bash
-redis-cli -p 7000 cluster info
-```
-
-Example output:
-
-```
-cluster_state:ok
-cluster_slots_assigned:16384
-cluster_known_nodes:6
-```
+Total nodes: **6 (3 masters + 3 replicas)**
 
 ---
 
-# 2. Reset Cluster Configuration on Each Node
+# 1 Install Redis (Run on ALL Nodes)
 
-Run the following command on **every Redis node**.
-
-Example:
+Run the following on **Node1, Node2, Node3**.
 
 ```bash
-redis-cli -p 7000 cluster reset
+sudo apt-get install lsb-release curl gpg -y
+
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+
+sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+sudo apt-get update
+sudo apt-get install redis -y
 ```
 
-Repeat for all nodes:
+Verify installation:
 
 ```bash
-redis-cli -p 7001 cluster reset
-redis-cli -p 7002 cluster reset
-redis-cli -p 7003 cluster reset
-redis-cli -p 7004 cluster reset
-redis-cli -p 7005 cluster reset
-```
-
-This removes:
-
-- cluster relationships
-- slot assignments
-- cluster metadata
-
-Each node becomes a **standalone Redis server** again.
-
----
-
-# 3. If Nodes Contain Data (Use Hard Reset)
-
-If Redis refuses the reset because keys exist, run:
-
-```bash
-redis-cli -p 7000 cluster reset hard
-```
-
-Repeat for all nodes:
-
-```bash
-redis-cli -p 7001 cluster reset hard
-redis-cli -p 7002 cluster reset hard
-redis-cli -p 7003 cluster reset hard
-redis-cli -p 7004 cluster reset hard
-redis-cli -p 7005 cluster reset hard
-```
-
-This will:
-
-- remove all cluster state
-- clear slot assignments
-- detach nodes from cluster
-
----
-
-# 4. Remove Cluster Metadata Files (Optional but Recommended)
-
-Redis stores cluster metadata in `nodes.conf`.
-
-Delete these files:
-
-```bash
-rm 700*/nodes.conf
-```
-
-Or individually:
-
-```bash
-rm 7000/nodes.conf
-rm 7001/nodes.conf
-rm 7002/nodes.conf
-rm 7003/nodes.conf
-rm 7004/nodes.conf
-rm 7005/nodes.conf
+redis-server --version
 ```
 
 ---
 
-# 5. Verify Nodes Are No Longer in Cluster
+# 2 Create Redis Configuration Template (Run on ALL Nodes)
 
-Run:
+```bash
+cat <<EOF > redis.conf
+bind 0.0.0.0
+protected-mode no
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+appendonly yes
+EOF
+```
+
+---
+
+# 3 Create Node Directories
+
+## Node1 (WSL1)
+
+```bash
+mkdir 7000 7001
+```
+
+## Node2 (WSL2)
+
+```bash
+mkdir 7002 7003
+```
+
+## Node3 (WSL3)
+
+```bash
+mkdir 7004 7005
+```
+
+---
+
+# 4 Copy redis.conf into Each Directory
+
+## Node1
+
+```bash
+cp redis.conf 7000
+cp redis.conf 7001
+```
+
+## Node2
+
+```bash
+cp redis.conf 7002
+cp redis.conf 7003
+```
+
+## Node3
+
+```bash
+cp redis.conf 7004
+cp redis.conf 7005
+```
+
+---
+
+# 5 Set Correct Port for Each Redis Node
+
+## Node1
+
+```bash
+echo "port 7000" >> 7000/redis.conf
+echo "port 7001" >> 7001/redis.conf
+```
+
+## Node2
+
+```bash
+echo "port 7002" >> 7002/redis.conf
+echo "port 7003" >> 7003/redis.conf
+```
+
+## Node3
+
+```bash
+echo "port 7004" >> 7004/redis.conf
+echo "port 7005" >> 7005/redis.conf
+```
+
+---
+
+# 6 Start Redis Nodes
+
+## Node1
+
+```bash
+(cd 7000 && redis-server redis.conf &)
+(cd 7001 && redis-server redis.conf &)
+```
+
+## Node2
+
+```bash
+(cd 7002 && redis-server redis.conf &)
+(cd 7003 && redis-server redis.conf &)
+```
+
+## Node3
+
+```bash
+(cd 7004 && redis-server redis.conf &)
+(cd 7005 && redis-server redis.conf &)
+```
+
+Verify processes:
+
+```bash
+ps -ef | grep redis
+```
+
+---
+
+# 7 Create Redis Cluster
+
+Run this command from **any one node**.
+
+Replace the IP below if your WSL IP differs.
+
+```bash
+redis-cli --cluster create 172.27.122.70:7000 172.27.122.70:7001 172.27.122.70:7002 172.27.122.70:7003 172.27.122.70:7004 172.27.122.70:7005 --cluster-replicas 1
+```
+
+When prompted:
+
+```
+yes
+```
+
+Redis will automatically assign masters and replicas.
+
+---
+
+# 8 Verify Cluster Status
 
 ```bash
 redis-cli -p 7000 cluster info
@@ -115,47 +193,55 @@ redis-cli -p 7000 cluster info
 Expected output:
 
 ```
-cluster_state:fail
-cluster_known_nodes:1
+cluster_state:ok
+cluster_slots_assigned:16384
+cluster_slots_ok:16384
 ```
-
-This means the node is **standalone**.
 
 ---
 
-# 6. Create a New Cluster (Optional)
-
-If you want to recreate the cluster:
+# 9 Check Cluster Nodes
 
 ```bash
-redis-cli --cluster create \
-172.27.122.70:7000 \
-172.27.122.70:7001 \
-172.27.122.70:7002 \
-172.27.122.70:7003 \
-172.27.122.70:7004 \
-172.27.122.70:7005 \
---cluster-replicas 1
-```
-
-When prompted type:
-
-```
-yes
+redis-cli -p 7000 cluster nodes
 ```
 
 ---
 
-# Summary
+# 10 Connect to Cluster
 
-To delete/reset a Redis cluster without shutting down nodes:
-
-```
-redis-cli -p PORT cluster reset hard
+```bash
+redis-cli -c -p 7000
 ```
 
-Run on **all nodes**.
+Test routing:
+
+```
+set name redis
+get name
+```
+
+You may see:
+
+```
+-> Redirected to slot located at another node
+```
 
 ---
 
-Your Redis nodes are now **detached from the cluster and ready for reuse**.
+# Final Cluster Architecture
+
+3 Masters
+3 Replicas
+
+Example:
+
+Master 7000 → Replica 7003  
+Master 7002 → Replica 7005  
+Master 7004 → Replica 7001
+
+---
+
+# Redis Cluster Ready
+
+Your **Redis Cluster across 3 WSL nodes** is now operational.
