@@ -37,4 +37,13 @@ The Command
 Run this to set your policy to noeviction:
 ```
 sudo sed -i 's/^#* *maxmemory-policy .*/maxmemory-policy noeviction/' /etc/redis/redis.conf
+sudo systemctl restart redis
 ```
+# to  minitor memory
+
+```
+watch -n 1 "redis-cli info memory | grep used_memory_human"
+```
+
+Run this command to test:
+redis-benchmark -q -n 200000 -d 1024 -t set -r 1000000
