@@ -46,4 +46,6 @@ watch -n 1 "redis-cli info memory | grep used_memory_human"
 ```
 
 Run this command to test:
+```
 redis-benchmark -q -n 200000 -d 1024 -t set -r 1000000
+```
