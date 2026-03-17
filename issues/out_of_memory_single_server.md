@@ -9,17 +9,25 @@ sudo apt-get update
 sudo apt-get install redis -y
 ```
 
-# Run this command to find the maxmemory line and change its value to 50MB:
-
+# Setting Redis `maxmemory` via Command Line
+ 
+## Command
+ 
+```bash
+sudo sed -i 's/^#* *maxmemory .*/maxmemory 50mb/' /etc/redis/redis.conf
+sudo systemctl restart redis-server
 ```
+ 
+---
+ 
 ## How it Works
-
+ 
 | Part | Description |
 |------|-------------|
 | `sudo` | Grants the necessary permissions to edit a system file. |
 | `sed -i` | Tells the editor to change the file **in-place** (saving it directly). |
-| `'s/.../.../`' | This is the **substitute** command. |
-| `^#* *maxmemory .*` | A regular expression that looks for any line starting with an optional comment (`#`), followed by the word `maxmemory` and any existing value. |
-| `maxmemory 50mb` | This is what the line is replaced with. |
-```
-
+| `'s/.../.../` | This is the **substitute** command. |
+| `^#* *maxmemory .*` | A regular expression that matches any line starting with an optional comment (`#`), followed by the word `maxmemory` and any existing value. |
+| `maxmemory 50mb` | The replacement value — what the matched line is replaced with. |
+ 
+---
