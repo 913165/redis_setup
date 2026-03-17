@@ -31,3 +31,10 @@ sudo systemctl restart redis-server
 | `maxmemory 50mb` | The replacement value — what the matched line is replaced with. |
  
 ---
+# You can use the exact same sed logic to swap out the eviction policy. Since Redis defaults to noeviction in many versions, this command will either uncomment the line or update an existing setting to ensure it's explicitly set.
+
+The Command
+Run this to set your policy to noeviction:
+```
+sudo sed -i 's/^#* *maxmemory-policy .*/maxmemory-policy noeviction/' /etc/redis/redis.conf
+```
